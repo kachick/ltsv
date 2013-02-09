@@ -43,7 +43,7 @@ module LTSV
 
     alias_method :for_io, :for_stringable
 
-    # @param [String, IO, StringIO, #each_line] stringable
+    # @param [String, Pathname] path
     # @yieldreturn [Hash] row - label<Symbol> => value<String>
     # @return [void]
     def foreach(path)
