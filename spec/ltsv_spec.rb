@@ -63,6 +63,21 @@ key1:val1	key2:val2	key3:val3
     subject { LTSV.line_from_hash(parsed_hash) }
     
     it { should eq(line.chomp) }
+    
+    context 'with malformed labels' do
+      it 'raises an error' do
+        expect { LTSV.line_from_hash 'with:delimiter': 'valid' }.to raise_error(LTSV::MalformedDataError)
+        expect { LTSV.line_from_hash "with\nline-end": 'valid' }.to raise_error(LTSV::MalformedDataError)
+        expect { LTSV.line_from_hash "with\ttab": 'valid' }.to raise_error(LTSV::MalformedDataError)
+      end
+    end
+    
+    context 'with malformed values' do
+      it 'raises an error' do
+        expect { LTSV.line_from_hash valid: "with\nline-end" }.to raise_error(LTSV::MalformedDataError)
+        expect { LTSV.line_from_hash valid: "with\ttab" }.to raise_error(LTSV::MalformedDataError)
+      end
+    end
   end
 
   context '.string_from_hashes' do
