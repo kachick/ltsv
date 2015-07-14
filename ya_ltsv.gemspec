@@ -9,7 +9,7 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{Yet another gem for LTSV}
   gem.description   = %q{An reader/writer library for the LTSV(Labeled Tab Separated Values) format. 
   See LTSV specs http://ltsv.org/.}
-  gem.homepage      = "http://kachick.github.com/#{lib_name}"
+  gem.homepage      = "https://github.com/kachick/#{lib_name}"
   gem.license       = 'MIT'
   gem.name          = 'ya_ltsv'
   gem.version       = LTSV::VERSION.dup
