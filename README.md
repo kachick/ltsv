@@ -43,7 +43,7 @@ Install
 -------
 
 ```bash
-gem install ya-ltsv
+gem install ya_ltsv
 ```
 
 Link
