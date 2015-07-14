@@ -4,6 +4,8 @@
 # What is LTSV?
 #  @see http://stanaka.hatenablog.com/entry/2013/02/05/214833
 
+require_relative 'ltsv/version'
+
 module LTSV
 
   ROW_SEPARATOR = "\n".freeze
