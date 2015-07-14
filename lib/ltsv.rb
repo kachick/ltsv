@@ -48,11 +48,11 @@ module LTSV
     # @param [String, Pathname] path
     # @yieldreturn [Hash] row - label<Symbol> => value<String>
     # @return [void]
-    def foreach(path)
+    def foreach(path, &block)
       return to_enum(__callee__, path) unless block_given?
 
       open path do |f|
-        for_io f
+        for_io f, &block
       end
       nil
     end
