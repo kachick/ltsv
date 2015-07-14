@@ -5,21 +5,21 @@ describe LTSV do
   
   # @see http://ltsv.org/
   let(:line) { "key1:val1	key2:val2\n" }  
-  let(:parsed_hash) { {key1: 'val1', key2: "val2\n"} }
+  let(:parsed_hash) { {key1: 'val1', key2: "val2"} }
 
   let(:string) do
 'key1:val1	key2:val2
 key1:val1	key2:val2	key3:val3
 '
   end
-  let(:parsed_hashes) { [{key1: 'val1', key2: "val2\n"}, {key1: 'val1', key2: 'val2', key3: "val3\n"}] }
+  let(:parsed_hashes) { [{key1: 'val1', key2: "val2"}, {key1: 'val1', key2: 'val2', key3: "val3"}] }
   
   let(:io) { StringIO.new string }
 
   context '.parse_line' do
     subject { LTSV.parse_line line }
     
-    it { should eq({key1: 'val1', key2: "val2\n"})  }
+    it { should eq(parsed_hash)  }
   end
   
   context '.parse' do
@@ -62,13 +62,13 @@ key1:val1	key2:val2	key3:val3
   context '.line_from_hash' do
     subject { LTSV.line_from_hash(parsed_hash) }
     
-    it { should eq(line) }
+    it { should eq(line.chomp) }
   end
 
   context '.string_from_hashes' do
     subject { LTSV.string_from_hashes(parsed_hashes) }
     
-    it { should eq(string) }
+    it { should eq(string.chomp) }
   end
 
   context 'long example' do
@@ -85,7 +85,7 @@ key1:val1	key2:val2	key3:val3
         status: "200", 
         size: "2326", 
         referer: "http://www.example.com/start.html",
-        ua: "Mozilla/4.08 [en] (Win98; I ;Nav)\n"}
+        ua: "Mozilla/4.08 [en] (Win98; I ;Nav)"}
         ) }
   end
 end

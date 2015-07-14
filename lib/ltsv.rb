@@ -19,7 +19,7 @@ module LTSV
     # @param [String] line
     # @return [Hash] row - label<Symbol> => value<String>
     def parse_line(line)
-      columns = line.split COLUMN_DELIMITER
+      columns = line.chomp.split COLUMN_DELIMITER
       {}.tap {|hash|
         columns.each do |column|
           label, value = *column.split(LABEL_END, 2)
