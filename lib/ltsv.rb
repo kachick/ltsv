@@ -1,8 +1,6 @@
 # Copyight (c) 2013 Kenichi Kamiya
-#   No Strict parser for the LTSV(Labeled Tab Separated Values) format 
-
-# What is LTSV?
-#  @see http://stanaka.hatenablog.com/entry/2013/02/05/214833
+#   An reader/writer library for the LTSV(Labeled Tab Separated Values) format 
+#   See LTSV specs http://ltsv.org/
 
 require_relative 'ltsv/version'
 
@@ -60,6 +58,8 @@ module LTSV
       nil
     end
     
+    # @param [Hash] hash
+    # @return [String]
     def line_from_hash(hash)
       hash.each_pair.map do |label, value|
         label, value = label.to_s, value.to_s
@@ -69,15 +69,19 @@ module LTSV
         "#{label}#{LABEL_END}#{value}"
       end.join COLUMN_DELIMITER
     end
-    
+  
+    # @param [Array<Hash>] hashes
+    # @return [String]
     def string_from_hashes(hashes)
       hashes.map{ |h| line_from_hash h }.join ROW_SEPARATOR
     end
     
+    # @param [String, Symbol] label
     def valid_label?(label)
       [COLUMN_DELIMITER, LABEL_END, ROW_SEPARATOR].none? { |special| label.include? special }
     end
     
+    # @param [String] value
     def valid_value?(value)
       [COLUMN_DELIMITER, ROW_SEPARATOR].none? { |special| value.include? special }
     end
