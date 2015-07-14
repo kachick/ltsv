@@ -11,6 +11,9 @@ module LTSV
   ROW_SEPARATOR = "\n".freeze
   COLUMN_DELIMITER = "\t".freeze
   LABEL_END = ':'.freeze
+  
+  class Error < StandardError; end
+  class MalformedDataError < Error; end
 
   class << self
     # @param [String] line
@@ -55,6 +58,28 @@ module LTSV
         for_io f, &block
       end
       nil
+    end
+    
+    def line_from_hash(hash)
+      hash.each_pair.map do |label, value|
+        label, value = label.to_s, value.to_s
+        raise MalformedDataError, "`#{label}' is an invalid label"  unless valid_label?(label)
+        raise MalformedDataError, "`#{value}' is an invalid value" unless valid_value?(value)
+        
+        "#{label}#{LABEL_END}#{value}"
+      end.join COLUMN_DELIMITER
+    end
+    
+    def string_from_hashes(hashes)
+      hashes.map{ |h| line_from_hash h }.join ROW_SEPARATOR
+    end
+    
+    def valid_label?(label)
+      [COLUMN_DELIMITER, LABEL_END, ROW_SEPARATOR].none? { |special| label.include? special }
+    end
+    
+    def valid_value?(value)
+      [COLUMN_DELIMITER, ROW_SEPARATOR].none? { |special| value.include? special }
     end
   end
 
