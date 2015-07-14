@@ -2,7 +2,7 @@ ltsv
 ==============
 
 [![Build Status](https://secure.travis-ci.org/kachick/ltsv.png)](http://travis-ci.org/kachick/ltsv)
-[![Gem Version](https://badge.fury.io/rb/ltsv.png)](http://badge.fury.io/rb/ltsv)
+[![Gem Version](https://badge.fury.io/rb/ya_ltsv.png)](http://badge.fury.io/rb/ltsv)
 [![Dependency Status](https://gemnasium.com/kachick/ltsv.svg)](https://gemnasium.com/kachick/ltsv)
 
 Description
@@ -53,7 +53,7 @@ Link
 * [API](http://www.rubydoc.info/github/kachick/ltsv)
 * [issues](https://github.com/kachick/ltsv/issues)
 * [CI](http://travis-ci.org/#!/kachick/ltsv)
-* [gem](https://rubygems.org/gems/ltsv)
+* [gem](https://rubygems.org/gems/ya_ltsv)
 
 License
 --------

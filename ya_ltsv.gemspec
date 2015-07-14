@@ -6,8 +6,9 @@ require "./lib/ltsv/version"
 Gem::Specification.new do |gem|
   # specific
 
-  gem.description   = %q{Yet another gem for LTSV}
-  gem.summary       = gem.description.dup
+  gem.summary       = %q{Yet another gem for LTSV}
+  gem.description   = %q{An reader/writer library for the LTSV(Labeled Tab Separated Values) format. 
+  See LTSV specs http://ltsv.org/.}
   gem.homepage      = "http://kachick.github.com/#{lib_name}"
   gem.license       = 'MIT'
   gem.name          = 'ya_ltsv'
