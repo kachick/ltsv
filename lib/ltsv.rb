@@ -1,3 +1,4 @@
+# coding: us-ascii
 # Copyight (c) 2013 Kenichi Kamiya
 #   An reader/writer library for the LTSV(Labeled Tab Separated Values) format 
 #   See LTSV specs http://ltsv.org/
