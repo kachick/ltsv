@@ -3,7 +3,6 @@ ltsv
 
 [![Build Status](https://secure.travis-ci.org/kachick/ltsv.png)](http://travis-ci.org/kachick/ltsv)
 [![Gem Version](https://badge.fury.io/rb/ya_ltsv.png)](http://badge.fury.io/rb/ltsv)
-[![Dependency Status](https://gemnasium.com/kachick/ltsv.svg)](https://gemnasium.com/kachick/ltsv)
 
 Description
 -----------
