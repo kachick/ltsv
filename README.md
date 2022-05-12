@@ -1,7 +1,7 @@
 ltsv
 ==============
 
-[![Build Status](https://secure.travis-ci.org/kachick/ltsv.png)](http://travis-ci.org/kachick/ltsv)
+![Build Status](https://github.com/kachick/ltsv/actions/workflows/test_behaviors.yml/badge.svg?branch=main)
 [![Gem Version](https://badge.fury.io/rb/ya_ltsv.png)](http://badge.fury.io/rb/ya_ltsv)
 
 Description
@@ -36,7 +36,7 @@ LTSV.line_from_hash valid: "with\ttab" #=> LTSV::MalformedDataError
 Requirements
 -------------
 
-* Ruby - [2.7 or later](http://travis-ci.org/#!/kachick/ltsv)
+* Ruby - 2.7 or later
 
 Install
 -------
