@@ -1,7 +1,9 @@
 # coding: us-ascii
 
 lib_name = 'ltsv'.freeze
-require "./lib/ltsv/version"
+
+require_relative "./lib/ltsv/version"
+repository_url = "https://github.com/kachick/#{lib_name}"
 
 Gem::Specification.new do |gem|
   # specific
@@ -14,22 +16,31 @@ Gem::Specification.new do |gem|
   gem.name          = 'ya_ltsv'
   gem.version       = LTSV::VERSION.dup
 
-  gem.add_development_dependency 'rspec', '>= 3.8', '< 4'
-  gem.add_development_dependency 'yard', '>= 0.9.20', '< 2'
-  gem.add_development_dependency 'rake', '>= 10', '< 20'
-  gem.add_development_dependency 'bundler', '>= 2', '< 3'
-  
-  if RUBY_ENGINE == 'rbx'
-    gem.add_development_dependency 'rubysl', '~> 2.1'
-  end
+  gem.metadata = {
+    'documentation_uri'     => 'https://kachick.github.io/ltsv/',
+    'homepage_uri'          => repository_url,
+    'source_code_uri'       => repository_url,
+    'bug_tracker_uri'       => "#{repository_url}/issues",
+    'rubygems_mfa_required' => 'true'
+  }
+
+  gem.required_ruby_version = Gem::Requirement.new('>= 2.7.0')
 
   # common
 
   gem.authors       = ['Kenichi Kamiya']
   gem.email         = ['kachick1+ruby@gmail.com']
-  gem.files         = `git ls-files`.split($\)
-  gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
-  gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
-  gem.require_paths = ['lib']
+  git_managed_files = `git ls-files`.lines.map(&:chomp)
+  might_be_parsing_by_tool_as_dependabot = git_managed_files.empty?
+  base_files = Dir['README*', '*LICENSE*',  'lib/**/*', 'sig/**/*'].uniq
+  files = might_be_parsing_by_tool_as_dependabot ? base_files : (base_files & git_managed_files)
 
+  unless might_be_parsing_by_tool_as_dependabot
+    if files.grep(%r!\A(?:lib|sig)/!).size < 2
+      raise "obvious mistaken in packaging files, looks shortage: #{files.inspect}"
+    end
+  end
+
+  gem.files         = files
+  gem.require_paths = ['lib']
 end
