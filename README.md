@@ -29,7 +29,7 @@ LTSV.for_io STDIN do |entry|
   p entry # calls the block with parsed hash
 end
 
-LTSV.line_from_hash({:key1=>"val1", :key2=>"val2"}) #=> "key1:val1	key2:val2"
+LTSV.line_from_hash({key1: 'val1', key2: 'val2'}) #=> "key1:val1	key2:val2"
 LTSV.line_from_hash valid: "with\ttab" #=> LTSV::MalformedDataError
 ```
 

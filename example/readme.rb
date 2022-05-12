@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'pp'
 require_relative '../lib/ltsv'
 
@@ -6,7 +7,7 @@ pp LTSV.parse_line "key1:val1	key2:val2\n" #=> {:key1=>"val1", :key2=>"val2"}
 pp LTSV.parse 'key1:val1	key2:val2
 key1:val1	key2:val2	key3:val3' #=> [{:key1=>"val1", :key2=>"val2"}, {:key1=>"val1", :key2=>"val2", :key3=>"val3"}]
 
-pp LTSV.line_from_hash({:key1=>"val1", :key2=>"val2"}) #=> "key1:val1	key2:val2"
+pp LTSV.line_from_hash({key1: 'val1', key2: 'val2'}) #=> "key1:val1	key2:val2"
 
 LTSV.for_io DATA do |row|
   pp row

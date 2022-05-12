@@ -1,16 +1,17 @@
 # coding: us-ascii
+# frozen_string_literal: true
+
 # Copyight (c) 2013 Kenichi Kamiya
-#   An reader/writer library for the LTSV(Labeled Tab Separated Values) format 
+#   An reader/writer library for the LTSV(Labeled Tab Separated Values) format
 #   See LTSV specs http://ltsv.org/
 
 require_relative 'ltsv/version'
 
 module LTSV
-
   ROW_SEPARATOR = "\n".freeze
   COLUMN_DELIMITER = "\t".freeze
   LABEL_END = ':'.freeze
-  
+
   class Error < StandardError; end
   class MalformedDataError < Error; end
 
@@ -18,8 +19,8 @@ module LTSV
     # @param [String] line
     # @return [Hash] row - label<Symbol> => value<String>
     def parse_line(line)
-      columns = line.chomp.split COLUMN_DELIMITER
-      {}.tap {|hash|
+      columns = line.chomp.split(COLUMN_DELIMITER)
+      {}.tap { |hash|
         columns.each do |column|
           label, value = *column.split(LABEL_END, 2)
           hash[label.to_sym] = value
@@ -39,7 +40,7 @@ module LTSV
     def for_stringable(stringable)
       return to_enum(__callee__, stringable) unless block_given?
 
-      stringable.each_line ROW_SEPARATOR do |line|
+      stringable.each_line(ROW_SEPARATOR) do |line|
         yield parse_line(line)
       end
       nil
@@ -51,41 +52,40 @@ module LTSV
     # @yieldreturn [Hash] row - label<Symbol> => value<String>
     # @return [void]
     def foreach(path, &block)
-      return to_enum(__callee__, path) unless block_given?
+      return to_enum(__callee__, path) unless block
 
-      open path do |f|
-        for_io f, &block
+      File.open(path) do |f|
+        for_io(f, &block)
       end
       nil
     end
-    
+
     # @param [Hash] hash
     # @return [String]
     def line_from_hash(hash)
       hash.each_pair.map do |label, value|
         label, value = label.to_s, value.to_s
-        raise MalformedDataError, "`#{label}' is an invalid label"  unless valid_label?(label)
+        raise MalformedDataError, "`#{label}' is an invalid label" unless valid_label?(label)
         raise MalformedDataError, "`#{value}' is an invalid value" unless valid_value?(value)
-        
+
         "#{label}#{LABEL_END}#{value}"
-      end.join COLUMN_DELIMITER
+      end.join(COLUMN_DELIMITER)
     end
-  
+
     # @param [Array<Hash>] hashes
     # @return [String]
     def string_from_hashes(hashes)
-      hashes.map{ |h| line_from_hash h }.join ROW_SEPARATOR
+      hashes.map { |h| line_from_hash(h) }.join(ROW_SEPARATOR)
     end
-    
+
     # @param [String, Symbol] label
     def valid_label?(label)
-      [COLUMN_DELIMITER, LABEL_END, ROW_SEPARATOR].none? { |special| label.include? special }
+      [COLUMN_DELIMITER, LABEL_END, ROW_SEPARATOR].none? { |special| label.include?(special) }
     end
-    
+
     # @param [String] value
     def valid_value?(value)
-      [COLUMN_DELIMITER, ROW_SEPARATOR].none? { |special| value.include? special }
+      [COLUMN_DELIMITER, ROW_SEPARATOR].none? { |special| value.include?(special) }
     end
   end
-
 end

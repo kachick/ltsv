@@ -1,8 +1,9 @@
 # coding: us-ascii
+# frozen_string_literal: true
 
 lib_name = 'ltsv'.freeze
 
-require_relative "./lib/ltsv/version"
+require_relative './lib/ltsv/version'
 repository_url = "https://github.com/kachick/#{lib_name}"
 
 Gem::Specification.new do |gem|
