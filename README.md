@@ -2,7 +2,7 @@ ltsv
 ==============
 
 [![Build Status](https://secure.travis-ci.org/kachick/ltsv.png)](http://travis-ci.org/kachick/ltsv)
-[![Gem Version](https://badge.fury.io/rb/ya_ltsv.png)](http://badge.fury.io/rb/ltsv)
+[![Gem Version](https://badge.fury.io/rb/ya_ltsv.png)](http://badge.fury.io/rb/ya_ltsv)
 
 Description
 -----------
@@ -29,14 +29,14 @@ LTSV.for_io STDIN do |entry|
   p entry # calls the block with parsed hash
 end
 
-LTSV.line_from_hash({:key1=>"val1", :key2=>"val2"}) #=> "key1:val1	key2:val2"
+LTSV.line_from_hash({key1: 'val1', key2: 'val2'}) #=> "key1:val1	key2:val2"
 LTSV.line_from_hash valid: "with\ttab" #=> LTSV::MalformedDataError
 ```
 
 Requirements
 -------------
 
-* Ruby - [2.5 or later](http://travis-ci.org/#!/kachick/ltsv)
+* Ruby - [2.7 or later](http://travis-ci.org/#!/kachick/ltsv)
 
 Install
 -------
@@ -44,15 +44,6 @@ Install
 ```bash
 gem install ya_ltsv
 ```
-
-Link
-----
-
-* [code](https://github.com/kachick/ltsv)
-* [API](http://www.rubydoc.info/github/kachick/ltsv)
-* [issues](https://github.com/kachick/ltsv/issues)
-* [CI](http://travis-ci.org/#!/kachick/ltsv)
-* [gem](https://rubygems.org/gems/ya_ltsv)
 
 License
 --------
