@@ -19,3 +19,5 @@ jobs:
         uses: kachick/auto-merge-dependabot-prs-without-pat-after-workflows-passed@v1-beta
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
