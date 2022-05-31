@@ -1,8 +1,11 @@
+* ***This repository is archived***
+* ***No longer maintained***
+* ***All versions have been yanked from https://rubygems.org for releasing valuable namespace for others***
+
 ltsv
 ==============
 
 ![Build Status](https://github.com/kachick/ltsv/actions/workflows/test_behaviors.yml/badge.svg?branch=main)
-[![Gem Version](https://badge.fury.io/rb/ya_ltsv.png)](http://badge.fury.io/rb/ya_ltsv)
 
 Description
 -----------
@@ -37,13 +40,6 @@ Requirements
 -------------
 
 * Ruby - 2.7 or later
-
-Install
--------
-
-```bash
-gem install ya_ltsv
-```
 
 License
 --------
