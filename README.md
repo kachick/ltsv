@@ -39,7 +39,7 @@ LTSV.line_from_hash valid: "with\ttab" #=> LTSV::MalformedDataError
 Requirements
 -------------
 
-* Ruby - 2.7 or later
+* Ruby - 3.1 or higher
 
 License
 --------
