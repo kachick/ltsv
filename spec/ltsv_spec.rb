@@ -30,13 +30,13 @@ key1:val1	key2:val2	key3:val3
   end
   
   context '.for_io' do
-    context 'wihtout a block' do
+    context 'without a block' do
       subject { LTSV.for_io(io) }
       
       it { should be_instance_of(Enumerator) }
       
       context 'the returned enumerator' do
-        it 'baheves normaly' do
+        it 'baheves normally' do
           expect(LTSV.for_io(io).to_a).to eq(LTSV.parse(string))
         end
       end
